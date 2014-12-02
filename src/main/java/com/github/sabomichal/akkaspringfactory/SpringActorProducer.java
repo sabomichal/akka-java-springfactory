@@ -5,7 +5,8 @@ import akka.actor.IndirectActorProducer;
 import org.springframework.context.ApplicationContext;
 
 /**
- * @author Michal Sabo
+ * Spring indirect actor producer
+ * source: https://github.com/typesafehub/activator-akka-java-spring
  */
 public class SpringActorProducer implements IndirectActorProducer {
 	final ApplicationContext applicationContext;
