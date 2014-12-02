@@ -126,9 +126,10 @@ public class ActorFactoryBean implements FactoryBean<ActorRef>, ApplicationConte
 	private static class SpringCreator implements Creator<Actor> {
 		private static final long serialVersionUID = 1L;
 
-		// TODO sabo zisti ci to nepotrebuje byt serializovatelne
+		// TODO what about serializability ?
 		private ApplicationContext ctx;
 		private Class<?> clazz;
+		// TODO what about serializability ?
 		private Object[] args;
 
 		private SpringCreator(ApplicationContext ctx, Class<?> clazz, Object... args) {
