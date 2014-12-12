@@ -9,38 +9,38 @@ Akka Spring integration for Java with additional spring factories for actor crea
 ## Basic usage
 ```xml
 <bean id="actorSystem" class="com.github.sabomichal.akkaspringfactory.ActorSystemFactoryBean">
-		<!-- actor system name -->
-		<property name="name" value="MyActorSystem"/>
-		<!-- actor system configuration -->
-		<property name="config">
-			<bean class="com.typesafe.config.ConfigFactory" factory-method="load">
-				<constructor-arg value="akkaActor.conf"/>
-			</bean>
-		</property>
-	</bean>
+	<!-- actor system name -->
+	<property name="name" value="MyActorSystem"/>
+	<!-- actor system configuration -->
+	<property name="config">
+		<bean class="com.typesafe.config.ConfigFactory" factory-method="load">
+			<constructor-arg value="akkaActor.conf"/>
+		</bean>
+	</property>
+</bean>
 
-	<bean id="springManagedActor" class="com.github.sabomichal.akkaspringfactory.ActorFactoryBean">
-		<!-- actor system reference -->
-		<property name="actorSystem" ref="actorSystem"/>
-		
-		<!-- class name of actor to create -->
-		<property name="actorClass" value="com.github.sabomichal.akkaspringfactory.test.GreetingActor"/>
-		
-		<!-- bean name of actor to create -->
-		<!-- property name="actorBeanClass" value=""/ -->
-		
-		<!-- router configuration -->
-		<!--property name="routerConfig">
-			<bean class="akka.routing.SmallestMailboxPool">
-				<constructor-arg value="10"/>
-			</bean>
-		</property-->
-		
-		<!-- mailbox settings -->
-		<!--property name="mailbox" value=""/>
-		
-		<!-- dispatcher settings -->
-		<!--property name="dispatcher" value=""/>
-	</bean>
+<bean id="springManagedActor" class="com.github.sabomichal.akkaspringfactory.ActorFactoryBean">
+	<!-- actor system reference -->
+	<property name="actorSystem" ref="actorSystem"/>
+	
+	<!-- class name of actor to create -->
+	<property name="actorClass" value="com.github.sabomichal.akkaspringfactory.test.GreetingActor"/>
+	
+	<!-- bean name of actor to create -->
+	<!-- property name="actorBeanClass" value=""/ -->
+	
+	<!-- router configuration -->
+	<!--property name="routerConfig">
+		<bean class="akka.routing.SmallestMailboxPool">
+			<constructor-arg value="10"/>
+		</bean>
+	</property-->
+	
+	<!-- mailbox settings -->
+	<!--property name="mailbox" value=""/>
+	
+	<!-- dispatcher settings -->
+	<!--property name="dispatcher" value=""/>
+</bean>
 ```
 For further examples see the unit tests.
