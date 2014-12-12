@@ -27,20 +27,20 @@ Akka Spring integration for Java with additional spring factories for actor crea
 	<property name="actorClass" value="com.github.sabomichal.akkaspringfactory.test.GreetingActor"/>
 	
 	<!-- bean name of actor to create -->
-	<!-- property name="actorBeanClass" value=""/ -->
+	<!--<property name="actorBeanClass" value=""/>-->
 	
 	<!-- router configuration -->
-	<!--property name="routerConfig">
+	<!--<property name="routerConfig">
 		<bean class="akka.routing.SmallestMailboxPool">
 			<constructor-arg value="10"/>
 		</bean>
-	</property-->
+	</property>-->
 	
 	<!-- mailbox settings -->
-	<!--property name="mailbox" value=""/>
+	<!--<property name="mailbox" value=""/>-->
 	
 	<!-- dispatcher settings -->
-	<!--property name="dispatcher" value=""/>
+	<!--<property name="dispatcher" value=""/>-->
 </bean>
 ```
 For further examples see the unit tests.
