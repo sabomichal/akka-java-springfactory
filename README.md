@@ -43,4 +43,4 @@ Akka Spring integration for Java with additional spring factories for actor crea
 		<!--property name="dispatcher" value=""/>
 	</bean>
 ```
-For further examples see the tests.
+For further examples see the unit tests.
