@@ -7,7 +7,8 @@ Akka Spring integration for Java with additional spring factories for actor crea
 * provides autowiring of created actors
 * router, mailbox and dispatcher can be configured directly via spring
 
-## Basic usage
+## How to create an actor system
+Just define actor system singleton in the spring context using ActorSystemFactoryBean:
 ```xml
 <bean id="actorSystem" class="com.github.sabomichal.akkaspringfactory.ActorSystemFactoryBean">
 	<!-- actor system name -->
@@ -19,7 +20,44 @@ Akka Spring integration for Java with additional spring factories for actor crea
 		</bean>
 	</property>
 </bean>
+```
 
+## How to create actors
+### Programmatic use case
+Enable Spring auto scanning of componnents,
+```xml
+<context:component-scan base-package="..." />
+```
+
+annotate actor with @Actor annotation,
+```java
+import com.github.sabomichal.akkaspringfactory.Actor;
+
+@Actor
+public class MyActor extends UntypedActor {
+
+	// additionally inject some dependencies
+	@Inject
+	private MyService injectedService;
+
+	@Override
+	public void onReceive(Object message) throws Exception {
+		// receive method
+	}
+}
+```
+
+and finally create an ActorRef programmatically
+```java
+@Inject
+private ActorSystem actorSystem;
+...
+ActorRef myActor = actorSystem.actorOf(SpringProps.create(actorSystem, MyActor.class));
+```
+
+### Spring managed use case
+Just create a spring managed actor reference
+```xml
 <bean id="springManagedActor" class="com.github.sabomichal.akkaspringfactory.ActorFactoryBean">
 	<!-- actor system reference -->
 	<property name="actorSystem" ref="actorSystem"/>
@@ -44,4 +82,13 @@ Akka Spring integration for Java with additional spring factories for actor crea
 	<!--<property name="dispatcher" value=""/>-->
 </bean>
 ```
-For further examples see the unit tests.
+
+and use it wherever you want
+```java
+@Inject
+private ActorRef springManagedActor;
+...
+springManagedActor.tell(...);
+```
+
+For detailed examples see the provided unit tests.
