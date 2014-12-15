@@ -5,6 +5,7 @@ Akka Spring integration for Java with additional spring factories for actor crea
 * provides factory method for actor system creation as a spring singleton bean
 * provides factory method for actor creation as a spring prototype bean
 * provides autowiring of created actors
+* router, mailbox and dispatcher can be configured directly via spring
 
 ## Basic usage
 ```xml
