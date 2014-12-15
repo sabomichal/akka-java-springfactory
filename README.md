@@ -8,7 +8,7 @@ Akka Spring integration for Java with additional spring factories for actor crea
 * router, mailbox and dispatcher can be configured directly via spring
 
 ## How to create an actor system
-Just define actor system singleton in the spring context using ActorSystemFactoryBean:
+Just define actor system singleton in the spring context using ActorSystemFactoryBean.
 ```xml
 <bean id="actorSystem" class="com.github.sabomichal.akkaspringfactory.ActorSystemFactoryBean">
 	<!-- actor system name -->
@@ -47,7 +47,7 @@ public class MyActor extends UntypedActor {
 }
 ```
 
-and finally create an ActorRef programmatically
+and finally create an ActorRef programmatically.
 ```java
 @Inject
 private ActorSystem actorSystem;
@@ -56,7 +56,7 @@ ActorRef myActor = actorSystem.actorOf(SpringProps.create(actorSystem, MyActor.c
 ```
 
 ### Spring managed use case
-Just create a spring managed actor reference
+Just create a spring managed actor reference,
 ```xml
 <bean id="springManagedActor" class="com.github.sabomichal.akkaspringfactory.ActorFactoryBean">
 	<!-- actor system reference -->
@@ -83,7 +83,7 @@ Just create a spring managed actor reference
 </bean>
 ```
 
-and use it wherever you want
+and use it as a spring managed dependency wherever you want. And since ActorFactoryBean is producing prototype beans, a new instance of ActorRef is created with every injection.
 ```java
 @Inject
 private ActorRef springManagedActor;
