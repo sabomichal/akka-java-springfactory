@@ -83,7 +83,7 @@ Just create a spring managed actor reference,
 </bean>
 ```
 
-and use it as a spring managed dependency wherever you want. And since ActorFactoryBean is producing prototype beans, a new instance of ActorRef is created with every injection.
+and use it as a spring managed dependency wherever you want. And since ActorFactoryBean is producing prototype beans, a new instance of ActorRef is created with all dependencies resolved.
 ```java
 @Inject
 private ActorRef springManagedActor;
