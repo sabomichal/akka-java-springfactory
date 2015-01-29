@@ -92,3 +92,5 @@ springManagedActor.tell(...);
 ```
 
 For detailed examples see the provided unit tests.
+
+If you like it, give it a star.
