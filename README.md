@@ -1,6 +1,6 @@
 akka-java-springfactory
 =======================
-Akka Spring integration for Java with additional spring factories for actor creation with ease.
+Akka Spring integration for Java with additional spring factories for actor creation with ease. This approach is based on the original approach by Typesafe found here http://typesafe.com/activator/template/akka-java-spring.
 
 * provides factory method for actor system creation as a spring singleton bean
 * provides factory method for actor creation as a spring prototype bean
