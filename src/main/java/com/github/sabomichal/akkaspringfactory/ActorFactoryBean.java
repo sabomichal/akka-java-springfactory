@@ -1,11 +1,11 @@
 package com.github.sabomichal.akkaspringfactory;
 
+import akka.actor.AbstractActor;
 import akka.actor.Actor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Deploy;
 import akka.actor.Props;
-import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import akka.routing.RouterConfig;
 import org.apache.commons.lang3.reflect.ConstructorUtils;
@@ -45,9 +45,9 @@ public class ActorFactoryBean implements FactoryBean<ActorRef>, ApplicationConte
 		if (actorClass != null) {
 			props = Props.create(new SpringCreator(ctx, Class.forName(actorClass), args));
 		} else if (actorBeanName != null && actorBeanClass != null) {
-			props = SpringProps.create(actorSystem, actorBeanName, (Class<? extends UntypedActor>) Class.forName(actorBeanClass));
+			props = SpringProps.create(actorSystem, actorBeanName, (Class<? extends AbstractActor>) Class.forName(actorBeanClass));
 		} else if (actorBeanClass != null) {
-			props = SpringProps.create(actorSystem, (Class<? extends UntypedActor>) Class.forName(actorBeanClass));
+			props = SpringProps.create(actorSystem, (Class<? extends AbstractActor>) Class.forName(actorBeanClass));
 		} else {
 			props = SpringProps.create(actorSystem, actorBeanName);
 		}
@@ -126,10 +126,10 @@ public class ActorFactoryBean implements FactoryBean<ActorRef>, ApplicationConte
 	private static class SpringCreator implements Creator<Actor> {
 		private static final long serialVersionUID = 1L;
 
-		// TODO what about serializability ?
+		// TODO serializability applies only to remote actors, so it should be safe to use not serializable context
 		private ApplicationContext ctx;
 		private Class<?> clazz;
-		// TODO what about serializability ?
+		// TODO serializability applies only to remote actors, so it should be safe to use not serializable arguments
 		private Object[] args;
 
 		private SpringCreator(ApplicationContext ctx, Class<?> clazz, Object... args) {

@@ -3,6 +3,7 @@ package com.github.sabomichal.akkaspringfactory;
 import akka.actor.ActorSystem;
 import com.typesafe.config.Config;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +15,7 @@ import org.springframework.context.ApplicationContextAware;
  *
  * @author Michal Sabo
  */
-public class ActorSystemFactoryBean implements FactoryBean<ActorSystem>, ApplicationContextAware, InitializingBean {
+public class ActorSystemFactoryBean implements FactoryBean<ActorSystem>, ApplicationContextAware, InitializingBean, DisposableBean {
 
 	private ApplicationContext ctx;
 	private String name;
@@ -62,5 +63,10 @@ public class ActorSystemFactoryBean implements FactoryBean<ActorSystem>, Applica
 		// init extensions
 		SpringExtension.instance().get(system).setApplicationContext(ctx);
 		actorSystem = system;
+	}
+
+	@Override
+	public void destroy() throws Exception {
+		actorSystem.terminate();
 	}
 }
