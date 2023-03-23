@@ -8,7 +8,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springVersion>5.3.20</springVersion>
+		<springVersion>5.3.26</springVersion>
 		<akkaVersion>2.5.32</akkaVersion>
 	</properties>
 
